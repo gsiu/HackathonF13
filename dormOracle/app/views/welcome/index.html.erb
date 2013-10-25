@@ -1,2 +1,9 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Welcome to Dorm Oracle</h1>
+<div>Enter your housing lottery number:<br />
+    <%= form_tag("/search", method: "get") do %>
+        <%= label_tag(:q, "Lottery Num:") %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Enter") %>
+    <% end %>
+
+</div>
