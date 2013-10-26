@@ -9,6 +9,8 @@ DormOracle::Application.routes.draw do
   resources :posts
   resources :welcome
   root to: "welcome#index"
+
+  match '/:controller(/:action)', via: [:get, :post]
   
 
   # Example of regular route:

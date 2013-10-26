@@ -1,9 +1,11 @@
+<% content_for :head do %>
+<% end %>
+<% content_for :body do %>
 <h1>Welcome to Dorm Oracle</h1>
 <div class="center hero-unit">
   <h2>Enter your housing lottery number:</h2>
-    <%= form_tag controller: "welcome", action:"search", method: "get" do %>
-      <!--<%= label_tag(:q, "Lottery Num:") %>-->
-        <%= text_field_tag(:q) %>
+  <%= form_tag({controller: "welcome", action:"show"}, method: "get") do %>
+        <%= text_field_tag(:number) %>
         <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
 
@@ -12,3 +14,5 @@
     <%= link_to "My Blog", controller: "posts" %><br>
 
 </div>
+
+<% end %>

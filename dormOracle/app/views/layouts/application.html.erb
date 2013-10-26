@@ -5,30 +5,7 @@
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
-    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-    <script type='text/javascript'>
-      google.load('visualization', '1', {packages:['gauge']});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Label', 'Value'],
-            ['Hillsides', 80],
-            ['Latin Way', 55],
-            ['Wren', 68]
-            ['Wren', 68]
-            ]);
-
-        var options = {
-width: 400, height: 120,
-       redFrom: 90, redTo: 100,
-       yellowFrom:75, yellowTo: 90,
-       minorTicks: 5
-        };
-
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
+    <%= yield :head %>
 
 </head>
 <!--[if lt IE 9]>
@@ -50,8 +27,7 @@ width: 400, height: 120,
   </div>
   </header>
   <div class="container">
-    <%= yield %>
-  <div id='chart_div'></div>
+    <%= yield :body %>
   </div>
 
 </body>
