@@ -5,7 +5,7 @@
 <div class="center hero-unit">
   <h2>Enter your housing lottery number:</h2>
   <%= form_tag({controller: "welcome", action:"show"}, method: "get") do %>
-        <%= text_field_tag(:q) %>
+        <%= text_field_tag(:number) %>
         <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
 

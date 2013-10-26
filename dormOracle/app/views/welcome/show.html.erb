@@ -7,7 +7,7 @@
       var data = google.visualization.arrayToDataTable(<%=raw @array.to_json %>);
 
       var options = {
-        width: 1000, height: 500,
+        width: 1000, height: 700,
        redFrom: 90, redTo: 100,
        yellowFrom:75, yellowTo: 90,
        minorTicks: 5
@@ -19,5 +19,5 @@
 </script>
 <% end %>
 <% content_for :body do %>
-<div id='chart_div'></div>
+<div id='chart_div' style="text-align=center"></div>
 <% end %>
