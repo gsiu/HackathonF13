@@ -2,14 +2,65 @@ class WelcomeController < ApplicationController
   def index
   end
   def show
-     @array = [['Label', 'Value'],
-      ['Hillsides', 80],
-      ['Latin Way', 55],
-      ['Wren', 68],
-      ['Wren', 68]
+    hillsides = 0
+    latinway = 0
+    sogo = 0
+    wrenm = 0
+    wrenf = 0
+    chlww = 0
+
+    number =  params["number"] == nil ? 0 : params["number"]
+    number = Integer(number)
+    Rails.logger.debug "HousingNumber: #{number}"
+    dorms = Dorm.uniq.pluck(:name)
+    dorms.each do |d|
+      avgs = Dorm.where("\"name\" == \"#{d}\"").pluck(:average)
+      sum = 0
+      avgs.each do |avg|
+        sum += avg
+      end
+      mean = sum/avgs.size
+      Rails.logger.debug "Mean: #{mean}"
+
+      ssquares = 0
+      avgs.each do |avg|
+        ssquares += (mean-avg)**2
+      end
+      stddev = Math.sqrt(ssquares/avgs.size)
+      Rails.logger.debug "sigma: #{stddev}"
+      z = (number-mean)/stddev
+      z = z/10 + z % 10
+      Rails.logger.debug "Z: #{z}"
+      #normal_pdf=lambda {|x| (1/(stddev*Math.sqrt(2*Math::PI)))*Math.exp(-((x-mean)**2/(2*(stddev**2))))}
+      normal_pdf=lambda {|x| (1/Math.sqrt(2*Math::PI))*Math.exp(-(x**2/2))}
+      prob = Integration.integrate(Integration::MInfinity, z, :tolerance=>1e-10, &normal_pdf)
+      Rails.logger.debug "Probability: #{prob}"
+      prob = prob * 100
+      prob = prob.round
+      case d
+      when "hillsides"
+        hillsides = prob
+      when "latinway"
+        latinway = prob
+      when "sogo"
+        sogo = prob
+      when "wrenm"
+        wrenm = prob
+      when "wrenf"
+        wrenf = prob
+      when "chlww"
+        chlww = prob
+      end
+      #Integration.integrate(0, Integration::Infinity , :tolerance=>1e-10, &normal_pdf) => 0.5
+    end
+
+    @array = [['Label', 'Value'],
+      ['Hillsides', hillsides],
+      ['Latin Way', latinway],
+      ['Sophia Gordon', sogo],
+      ['Wren Male', wrenm],
+      ['Wren Female', wrenf],
+      ['Other Dorms', chlww]
     ]
-    housing = params["number"]
-   Rails.logger.debug "#{params.inspect}"
-    Rails.logger.debug "the array: #{@array}"
   end
 end

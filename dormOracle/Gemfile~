@@ -44,5 +44,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'sass-rails', '>= 3.2'
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem "integration", "~> 0.1.0"
+gem "gsl"
