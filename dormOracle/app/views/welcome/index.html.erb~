@@ -7,8 +7,4 @@
         <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
 
-    <br>
-    <%= link_to 'New post', new_post_path %><br>
-    <%= link_to "My Blog", controller: "posts" %><br>
-
 </div>
