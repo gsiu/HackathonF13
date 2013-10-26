@@ -1,0 +1,2 @@
+class Dorms < ActiveRecord::Base
+end
