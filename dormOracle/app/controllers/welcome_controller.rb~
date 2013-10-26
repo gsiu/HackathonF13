@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
   def index
   end
-  def results
+  def search
+    Rails.logger.debug "#{params.inspect}"
+    render "HI"
   end
 end

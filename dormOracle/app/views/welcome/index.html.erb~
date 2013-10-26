@@ -1,10 +1,14 @@
 <h1>Welcome to Dorm Oracle</h1>
 <div class="center hero-unit">
   <h2>Enter your housing lottery number:</h2>
-    <%= form_tag("/search", method: "get") do %>
+    <%= form_tag("welcome/search", method: "get") do %>
       <!--<%= label_tag(:q, "Lottery Num:") %>-->
         <%= text_field_tag(:q) %>
         <%= submit_tag "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
+
+    <br>
+    <%= link_to 'New post', new_post_path %><br>
+    <%= link_to "My Blog", controller: "posts" %><br>
 
 </div>
